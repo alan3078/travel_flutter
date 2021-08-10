@@ -8,17 +8,15 @@ import 'package:package_info/package_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInBloc extends ChangeNotifier {
-  
   SignInBloc() {
     checkSignIn();
     checkGuestUser();
-    initPackageInfo();
   }
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googlSignIn = new GoogleSignIn();
   final String defaultUserImageUrl =
-      'https://www.seekpng.com/png/detail/115-1150053_avatar-png-transparent-png-royalty-free-default-user.png';
+      'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png';
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   bool _guestUser = false;
@@ -58,13 +56,6 @@ class SignInBloc extends ChangeNotifier {
 
   String _packageName = '';
   String get packageName => _packageName;
-
-  void initPackageInfo() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    _appVersion = packageInfo.version;
-    _packageName = packageInfo.packageName;
-    notifyListeners();
-  }
 
   Future signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googlSignIn

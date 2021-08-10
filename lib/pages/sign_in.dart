@@ -11,10 +11,7 @@ import 'package:travel_flutter/utils/snacbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:travel_flutter/widgets/language.dart';
 
-
-
 class SignInPage extends StatefulWidget {
-
   final String tag;
   SignInPage({Key key, this.tag}) : super(key: key);
 
@@ -22,73 +19,64 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
   bool googleSignInStarted = false;
   bool facebookSignInStarted = false;
   bool appleSignInStarted = false;
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
-
-  handleSkip (){
+  handleSkip() {
     final sb = context.read<SignInBloc>();
     sb.setGuestUser();
     nextScreen(context, DonePage());
-    
   }
 
-
-  handleGoogleSignIn() async{
+  handleGoogleSignIn() async {
     final sb = context.read<SignInBloc>();
     final ib = context.read<InternetBloc>();
-    setState(() =>googleSignInStarted = true);
+    setState(() => googleSignInStarted = true);
     await ib.checkInternet();
-    if(ib.hasInternet == false){
+    if (ib.hasInternet == false) {
       openSnacbar(scaffoldKey, 'check your internet connection!'.tr());
-      
-    }else{
-      await sb.signInWithGoogle().then((_){
-        if(sb.hasError == true){
-          openSnacbar(scaffoldKey, 'something is wrong. please try again.'.tr());
-          setState(() =>googleSignInStarted = false);
-
-        }else {
-          sb.checkUserExists().then((value){
-          if(value == true){
-            sb.getUserDatafromFirebase(sb.uid)
-            .then((value) => sb.saveDataToSP()
-            .then((value) => sb.guestSignout())
-            .then((value) => sb.setSignIn()
-            .then((value){
-              setState(() =>googleSignInStarted = false);
-              afterSignIn();
-            })));
-          } else{
-            sb.getJoiningDate()
-            .then((value) => sb.saveToFirebase()
-            .then((value) => sb.increaseUserCount())
-            .then((value) => sb.saveDataToSP()
-            .then((value) => sb.guestSignout()
-            .then((value) => sb.setSignIn()
-            .then((value){
-              setState(() => googleSignInStarted = false);
-              afterSignIn();
-            })))));
-          }
-            });
-          
+    } else {
+      await sb.signInWithGoogle().then((_) {
+        if (sb.hasError == true) {
+          openSnacbar(
+              scaffoldKey, 'something is wrong. please try again.'.tr());
+          setState(() => googleSignInStarted = false);
+        } else {
+          sb.checkUserExists().then((value) {
+            if (value == true) {
+              sb.getUserDatafromFirebase(sb.uid).then((value) => sb
+                  .saveDataToSP()
+                  .then((value) => sb.guestSignout())
+                  .then((value) => sb.setSignIn().then((value) {
+                        setState(() => googleSignInStarted = false);
+                        afterSignIn();
+                      })));
+            } else {
+              sb.getJoiningDate().then((value) => sb
+                  .saveToFirebase()
+                  .then((value) => sb.increaseUserCount())
+                  .then((value) => sb.saveDataToSP().then((value) => sb
+                      .guestSignout()
+                      .then((value) => sb.setSignIn().then((value) {
+                            setState(() => googleSignInStarted = false);
+                            afterSignIn();
+                          })))));
+            }
+          });
         }
       });
     }
   }
 
-  afterSignIn (){
-    if(widget.tag == null){
+  afterSignIn() {
+    if (widget.tag == null) {
       nextScreen(context, DonePage());
-    }else{
+    } else {
       Navigator.pop(context);
     }
-    
   }
 
   @override
@@ -107,13 +95,14 @@ class _SignInPageState extends State<SignInPage> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       )).tr()),
-
           IconButton(
             alignment: Alignment.center,
             padding: EdgeInsets.all(0),
             iconSize: 22,
-            icon: Icon(Icons.language,),
-            onPressed: (){
+            icon: Icon(
+              Icons.language,
+            ),
+            onPressed: () {
               nextScreenPopup(context, LanguagePopup());
             },
           ),
@@ -129,16 +118,20 @@ class _SignInPageState extends State<SignInPage> {
                 children: [
                   Text(
                     'welcome to',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.grey[700]),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[700]),
                   ).tr(),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     '${Config().appName}',
                     style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.grey[700]
-                    ),
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.grey[700]),
                   ),
                 ],
               )),
@@ -209,20 +202,18 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(
                     height: 15,
-                  ),SizedBox(
+                  ),
+                  SizedBox(
                     height: 15,
                   ),
                   Platform.isAndroid
                       ? Container()
-                      : SizedBox(height: MediaQuery.of(context).size.height * 0.05)
+                      : SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05)
                 ],
               )),
         ],
       ),
     );
   }
-
-
-
-  
 }

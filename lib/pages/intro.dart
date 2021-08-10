@@ -13,8 +13,6 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-
-
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -23,24 +21,7 @@ class _IntroPageState extends State<IntroPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          Container(
-            height: h * 0.82,
-            child: Carousel(
-
-              dotVerticalPadding: h * 0.00,
-              dotColor: Colors.grey,
-              dotIncreasedColor: Colors.blueAccent,
-              autoplay: false,
-              dotBgColor: Colors.transparent,
-              dotSize: 6,
-              dotSpacing: 15,
-              images: [
-                IntroView(title: 'intro-title1', description: 'intro-description1', image: Config().introImage1),
-                IntroView(title: 'intro-title2', description: 'intro-description2', image: Config().introImage2),
-                IntroView(title: 'intro-title3', description: 'intro-description3', image: Config().introImage3),
-              ],
-            ),
-          ),
+          Container(height: h * 0.82, child: null),
           SizedBox(
             height: 30,
           ),
@@ -48,9 +29,9 @@ class _IntroPageState extends State<IntroPage> {
             height: 45,
             width: w * 0.70,
             decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(25),
-                ),
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(25),
+            ),
             child: FlatButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25)),
@@ -73,20 +54,18 @@ class _IntroPageState extends State<IntroPage> {
       ),
     );
   }
-  
-
-
-  
-
-  
 }
-
 
 class IntroView extends StatelessWidget {
   final String title;
   final String description;
   final String image;
-  const IntroView({Key key, @required this.title, @required this.description, @required this.image}) : super(key: key);
+  const IntroView(
+      {Key key,
+      @required this.title,
+      @required this.description,
+      @required this.image})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -109,26 +88,27 @@ class IntroView extends StatelessWidget {
           SizedBox(
             height: 25,
           ),
-          
           Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
             child: Text(
               title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.grey[800]),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.grey[800]),
             ).tr(),
           ),
           Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 10),
-                    height: 3,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(40)),
-                  ),
+            margin: EdgeInsets.only(top: 10, bottom: 10),
+            height: 3,
+            width: 150,
+            decoration: BoxDecoration(
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.circular(40)),
+          ),
           SizedBox(
             height: 15,
           ),
-          
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(

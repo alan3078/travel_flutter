@@ -13,7 +13,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(EasyLocalization(
-    supportedLocales: [Locale('en'), Locale('zh')],
+    supportedLocales: [
+      Locale('en'),
+      Locale('zh', 'TW'),
+    ],
     path: 'assets/translations',
     fallbackLocale: Locale('en'),
     //startLocale: Locale('en'),
@@ -31,7 +34,6 @@ class TravelFlutterApp extends StatefulWidget {
 
 class _TravelFlutterAppState extends State<TravelFlutterApp> {
   @override
-
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [

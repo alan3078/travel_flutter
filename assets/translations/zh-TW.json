@@ -1,0 +1,41 @@
+{
+
+    "welcome message": "探索孟加拉國的每一個著名景點，並以最簡單的方式找到附近的酒店和餐館。獲取實時路線、估計成本、旅遊博客等......",
+    "welcome to": "歡迎來到",
+
+    "skip": "跳過",
+    "check your internet connection!": "檢查您的網絡連接！",
+    "something is wrong. please try again.": "出錯了，請再試一次。",
+
+
+    "sign in": "登錄",
+    "cancel": "取消",
+
+    "notifications": "通知",
+    "notification details": "通知詳情",
+
+
+    "profile": "個人資料",
+    "general setting": "一般設置",
+    "login": "登錄",
+    "get notifications": "獲取通知",
+    "contact us": "聯繫我們",
+    "rate this app": "評價這個應用",
+    "licence": "Licence",
+    "privacy policy": "Privacy Policy",
+    "about us": "About Us",
+    "logout": "登出",
+    "edit profile": "編輯個人資料",
+    "update profile": "更新個人資料",
+    "updated successfully": "更新成功",
+    "enter new name": "輸入新名稱",
+
+    "logout title": "您真的要登出嗎?",
+    "yes": "是",
+    "no": "否",
+
+    "language": "語言",
+    "select language": "選擇語言",
+
+    "get started": "開始吧"
+}

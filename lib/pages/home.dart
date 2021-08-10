@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int _currentIndex = 0;
   PageController _pageController = PageController();
 
@@ -29,36 +28,25 @@ class _HomePageState extends State<HomePage> {
     Feather.user
   ];
 
-
   void onTabTapped(int index) {
     setState(() {
-     _currentIndex = index;
-     
-   });
-   _pageController.animateToPage(index,
-      curve: Curves.easeIn,
-      duration: Duration(milliseconds: 350));
-   
+      _currentIndex = index;
+    });
+    _pageController.animateToPage(index,
+        curve: Curves.easeIn, duration: Duration(milliseconds: 350));
   }
 
- @override
+  @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 0))
-    .then((value) async{
-
-    });
+    Future.delayed(Duration(milliseconds: 0)).then((value) async {});
   }
-
 
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +61,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: PageView(
         controller: _pageController,
-
-        physics: NeverScrollableScrollPhysics(),  
+        physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
           // Explore(),
           // StatesPage(),

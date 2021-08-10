@@ -1,15 +1,14 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 
-class InternetBloc extends ChangeNotifier{
+class InternetBloc extends ChangeNotifier {
   bool _hasInternet = false;
 
-
-  InternetBloc(){
+  InternetBloc() {
     checkInternet();
   }
 
-  set hasInternet (newVal){
+  set hasInternet(newVal) {
     _hasInternet = newVal;
   }
 
@@ -19,14 +18,10 @@ class InternetBloc extends ChangeNotifier{
     var result = await (Connectivity().checkConnectivity());
     if (result == ConnectivityResult.none) {
       _hasInternet = false;
-      
     } else {
       _hasInternet = true;
-      
     }
 
     notifyListeners();
   }
-
-
 }

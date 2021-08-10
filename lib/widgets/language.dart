@@ -12,36 +12,31 @@ class LanguagePopup extends StatefulWidget {
 class _LanguagePopupState extends State<LanguagePopup> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text('select language').tr(),
       ),
-      body : ListView.builder(
+      body: ListView.builder(
         padding: EdgeInsets.all(15),
         itemCount: Config().languages.length,
         itemBuilder: (BuildContext context, int index) {
-         return _itemList(Config().languages[index], index);
-       },
+          return _itemList(Config().languages[index], index);
+        },
       ),
     );
   }
 
-  Widget _itemList (d, index){
+  Widget _itemList(d, index) {
     return Column(
       children: [
         ListTile(
           leading: Icon(Icons.language),
           title: Text(d),
-          onTap: () async{
-            if(index == 0){
+          onTap: () async {
+            if (index == 0) {
               EasyLocalization.of(context).locale = Locale('en');
-            }
-            else if(index == 1){
-              EasyLocalization.of(context).locale = Locale('es');
-            }
-            else if(index == 2){
-              EasyLocalization.of(context).locale = Locale('ar');
+            } else if (index == 1) {
+              EasyLocalization.of(context).locale = Locale('zh', 'TW');
             }
             Navigator.pop(context);
           },

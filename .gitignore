@@ -47,3 +47,5 @@ app.*.map.json
 
 #google service
 google-services.json
+
+/lib/config/config.dart
